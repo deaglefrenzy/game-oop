@@ -2,35 +2,28 @@
 
 namespace Core;
 
-class Character
+abstract class Character
 {
     public string $name;
     public int $health;
     public int $strength;
+    public int $playerID;
+    public int $mana;
+    public string $className;
 
-    function __construct(
-        string $name,
-        int $health = 100,
-        int $strength = 10,
-    ) {
+    function charInit($playerID, $health, $strength, $name, $mana, $className)
+    {
+        $this->playerID = $playerID;
         $this->name = $name;
         $this->health = $health;
         $this->strength = $strength;
-    }
-
-    function charStatus(): string
-    {
-        $status = "<font style='font-size:20px; font-weight:bold;'>" . $this->name . "</font> ";
-        $status .= "HP: " . $this->health . ", ";
-        $status .= "STR: " . $this->strength;
-        $status .= "<br><br>";
-        return $status;
+        $this->mana = $mana;
+        $this->className = $className;
     }
 
     static function attack($char1, $char2): string
     {
-        $newhp = $char2->health - $char1->strength;
-        $char2->health = $newhp;
+        $char2->health = $char2->health - $char1->strength;
         $action = $char1->name . " attacked " . $char2->name . " for " . $char1->strength . " damage<br>";
         return $action;
     }
@@ -39,25 +32,14 @@ class Character
     {
         $this->health = $this->health + 20;
         $this->strength = $this->strength + 5;
+        $this->mana = $this->mana + 5;
 
         $action = $this->name . " has levelled up!<br>";
         return $action;
     }
-
-    static function simulateBattle($char1, $char2): string
-    {
-        while (($char1->health > 0) && ($char2->health > 0)) {
-            echo Character::attack($char2, $char1);
-            echo Character::attack($char1, $char2);
-        }
-        if ($char1->health <= 0) {
-            $kalah = $char1->name;
-            $menang = $char2->name;
-        } else {
-            $kalah = $char2->name;
-            $menang = $char1->name;
-        }
-        $action = $kalah . " has died. " . $menang . " won the battle.";
-        return $action;
-    }
 }
+
+// $allWarriors =
+// foreach($charactersDB as $char) {
+    
+// }

@@ -2,37 +2,39 @@
 
 require "Character.php";
 require "Mage.php";
+require "Warrior.php";
+require "functions.php";
 
 use Core\Character;
 
-$hero = new Character("Aragon");
-echo $hero->charStatus();
+$hero = new Warrior(1, "Aragon");
+echo charStatus($hero);
 
-$villain = new Character("Orc", 80, 5);
-echo $villain->charStatus();
+$villain = new Warrior(2, "Orc", 80, 5);
+echo charStatus($villain);
 
 echo Character::attack($hero, $villain);
 
-echo $villain->charStatus();
+echo charStatus($villain);
 
 echo $hero->levelUp();
 
-echo $hero->charStatus();
+echo charStatus($hero);
 
-echo Character::simulateBattle($hero, $villain);
+echo simulateBattle($hero, $villain);
 
 echo "<br><br>";
 
-echo $hero->charStatus();
-echo $villain->charStatus();
+echo charStatus($hero);
+echo charStatus($villain);
 
-$mage = new Mage("Gandalf");
-$villain = new Character("Balrog", 80, 8);
+$mage = new Mage(3, "Gandalf");
+$villain = new Warrior(4, "Balrog", 80, 8);
 
-echo $mage->mageStatus();
-echo $villain->charStatus();
+echo charStatus($mage);
+echo charStatus($villain);
 
 echo $mage->castSpell($villain);
 
-echo $mage->mageStatus();
-echo $villain->charStatus();
+echo charStatus($mage);
+echo charStatus($villain);
