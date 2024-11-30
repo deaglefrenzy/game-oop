@@ -2,12 +2,12 @@
 
 class CharCreate
 {
-    private function insertChar($file, $data)
+    public function insertChar($file, $data)
     {
         put($file, $data, "a");
     }
 
-    private function isEmptySubmit()
+    public function isEmptySubmit()
     {
         if (isset($this->name)) {
             return false;
