@@ -6,17 +6,14 @@ require "heroclasses\Warrior.php";
 require "heroclasses\Archer.php";
 require "functions.php";
 
-use Core\Character;
-
 $file = "data.csv";
 
-$data = populate();
+//$data = populate();
 
-put($file, $data, "w");
+//put($file, $data, "w");
 
 $view = get($file);
 $jum = count($view);
-//echo var_dump($view);
 
 ?>
 <table align="center" style="width:35%; border:3px solid #333;" rules="all">
@@ -30,6 +27,7 @@ $jum = count($view);
         <th>Action</th>
     </thead>
     <form action="char.add.php" method="post">
+        <input type="hidden" name="file" value="<?php echo $file; ?>">
         <tr>
             <td>
                 <input type="hidden" name="playerID" value="<?php echo $jum + 1; ?>">
