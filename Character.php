@@ -38,8 +38,3 @@ abstract class Character
         return $action;
     }
 }
-
-// $allWarriors =
-// foreach($charactersDB as $char) {
-    
-// }

@@ -29,47 +29,155 @@ function charStatus($char): string
     return $status;
 }
 
-function populate()
+function populate(): array
 {
-    $names = [
-        'Aelric',
-        'Branwen',
-        'Caelum',
-        'Dain',
-        'Eira',
-        'Fendrel',
-        'Galen',
-        'Halia',
-        'Ivor',
-        'Jareth',
-        'Kael',
-        'Lira',
-        'Maelis',
-        'Niamh',
-        'Orin',
-        'Pyrra',
-        'Quinn',
-        'Ronan',
-        'Sylas',
-        'Talia',
-        'Ulric',
-        'Vanya',
-        'Wren',
-        'Xander',
-        'Yara',
-        'Zara'
+    $fantasyNames = [
+        "Aerith",
+        "Baelric",
+        "Caelum",
+        "Daelith",
+        "Elyndra",
+        "Faelora",
+        "Galadorn",
+        "Helion",
+        "Isilme",
+        "Jorvan",
+        "Kaelith",
+        "Lorien",
+        "Myrddin",
+        "Nivara",
+        "Oberon",
+        "Pryndel",
+        "Quillan",
+        "Rhaegor",
+        "Sylvaris",
+        "Thalorin",
+        "Ulther",
+        "Vaelwyn",
+        "Wyndral",
+        "Xanther",
+        "Ylvara",
+        "Zarathor",
+        "Amarion",
+        "Belthar",
+        "Corvyn",
+        "Drevan",
+        "Eryndor",
+        "Fenwyn",
+        "Gildar",
+        "Halyra",
+        "Ivorian",
+        "Jareth",
+        "Kaelwyn",
+        "Lirien",
+        "Morthil",
+        "Nyssara",
+        "Orynth",
+        "Pyrran",
+        "Quenril",
+        "Rhyndor",
+        "Selvyn",
+        "Talion",
+        "Ultharion",
+        "Valdric",
+        "Wynvara",
+        "Xylander",
+        "Ysaria",
+        "Zorvan",
+        "Aelindra",
+        "Bryneth",
+        "Calystria",
+        "Darian",
+        "Evarion",
+        "Feylith",
+        "Grathor",
+        "Halendor",
+        "Ilyndra",
+        "Jovaryn",
+        "Kyrndel",
+        "Lathien",
+        "Meliora",
+        "Nythril",
+        "Oryndal",
+        "Phaelor",
+        "Qalindra",
+        "Ravynn",
+        "Syrathis",
+        "Thalindra",
+        "Ulvaryn",
+        "Veylith",
+        "Wrynnar",
+        "Xyndral",
+        "Yvalen",
+        "Zaldris",
+        "Arwyn",
+        "Balindor",
+        "Cervith",
+        "Draythor",
+        "Elrion",
+        "Ferindel",
+        "Gorath",
+        "Halveth",
+        "Illyria",
+        "Jorath",
+        "Kelvaris",
+        "Lysara",
+        "Morvyn",
+        "Nareth",
+        "Othryn",
+        "Pharion",
+        "Qarindra",
+        "Rynther",
+        "Sylveth",
+        "Tharion",
+        "Urvalyn",
+        "Valtheris"
     ];
     $classes = ['Warrior', 'Mage', 'Archer'];
 
-    $players = [];
-    for ($i = 1; $i <= 100; $i++) {
-        $players[] = [
-            'playerId' => $i,
-            'name' => $names[array_rand($names)], // Random name
-            'health' => rand(10, 100), // Random health
-            'strength' => rand(5, 20),
-            'mana' => rand(0, 50), // Random strength
-            'className' => $classes[array_rand($classes)], // Random class
+    $karakter = [];
+    for ($i = 1; $i <= 20; $i++) {
+        $randomclass = $classes[array_rand($classes)];
+        if ($randomclass !== "Mage") {
+            $randommana = rand(1, 6) * 5;
+        } else {
+            $randommana = 0;
+        }
+        $karakter[] = [
+            'playerID' => $i,
+            'name' => $fantasyNames[array_rand($fantasyNames)],
+            'health' => rand(6, 10) * 10,
+            'strength' => rand(1, 6) * 5,
+            'mana' => $randommana,
+            'className' => $randomclass
         ];
     }
+    return $karakter;
+}
+
+function put($file, $data, $mode): string
+{
+    if ($handle = fopen($file, $mode)) {
+        foreach ($data as $row) {
+            fputcsv($handle, $row);
+        }
+        fclose($handle);
+        return "Data written.";
+    } else {
+        return "Unable to open file for writing.";
+    }
+}
+
+function get($file): array
+{
+    if (($handle = fopen($file, 'r')) !== false) {
+        $data = [];
+
+        while (($row = fgetcsv($handle, 1000, ',')) !== false) {
+            $data[] = $row;
+        }
+
+        fclose($handle);
+        return $data;
+    } else die("Can't open file.");
 }
