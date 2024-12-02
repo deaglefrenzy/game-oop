@@ -15,10 +15,15 @@ class Archer extends Character
         parent::charInit($playerID, $health, $strength, $name, $mana, $className);
     }
 
-    function rangedAttack($char): string
+    // function rangedAttack($char): string
+    // {
+    //     $char->health = $char->health - $this->strength;
+    //     $action = $this->name . " range attacks " . $char->name . " for " . $this->strength . " damage<br>";
+    //     return $action;
+    // }
+    function rangedAttack(): string
     {
-        $char->health = $char->health - $this->strength;
-        $action = $this->name . " range attacks " . $char->name . " for " . $this->strength . " damage<br>";
+        $action = $this->name . " range attacks for " . $this->strength . " damage";
         return $action;
     }
 }

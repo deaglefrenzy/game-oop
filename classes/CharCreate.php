@@ -1,28 +1,28 @@
 <?php
 
-class CharCreate
+abstract class CharCreate
 {
-    public function insertChar($file, $data)
+    public static function insertChar($file, $data)
     {
-        put($file, $data, "a");
+        $array = get_object_vars($data);
+        $insert[] = $array;
+        put($file, $insert, "a");
+        header("location: index.php");
     }
 
-    public function isEmptySubmit()
+    public static function isEmptySubmit($data)
     {
-        if (isset($this->name)) {
+        if (isset($data->name)) {
             return false;
         } else return true;
     }
 
-    public function spawn($file, $data)
+    public static function spawn($file, $data)
     {
-        //error handles
-        if ($this->isEmptySubmit()) {
+        if (self::isEmptySubmit($data)) {
             header("location: index.php");
             die();
         }
-
-        //if no error
-        $this->insertChar($file, $data);
+        self::insertChar($file, $data);
     }
 }

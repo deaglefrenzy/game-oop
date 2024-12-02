@@ -15,10 +15,15 @@ class Warrior extends Character
         parent::charInit($playerID, $health, $strength, $name, $mana, $className);
     }
 
-    function meleeAttack($char): string
+    // function meleeAttack($char): string
+    // {
+    //     $char->health = $char->health - $this->strength;
+    //     $action = $this->name . " melee attacks " . $char->name . " for " . $this->strength . " damage<br>";
+    //     return $action;
+    // }
+    function meleeAttack(): string
     {
-        $char->health = $char->health - $this->strength;
-        $action = $this->name . " melee attacks " . $char->name . " for " . $this->strength . " damage<br>";
+        $action = $this->name . " melee attacks for " . $this->strength . " damage";
         return $action;
     }
 }

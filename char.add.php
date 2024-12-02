@@ -20,6 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if ($className == "Warrior") $add = new Warrior($playerID, $name, $health, $strength, $mana, $className);
     else if ($className == "Archer") $add = new Archer($playerID, $name, $health, $strength, $mana, $className);
     else if ($className == "Mage") $add = new Mage($playerID, $name, $health, $strength, $mana, $className);
-    $buat = new CharCreate;
-    $buat->spawn($file, $add);
+
+    $result = CharCreate::spawn($file, $add);
 }

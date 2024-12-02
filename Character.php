@@ -4,10 +4,10 @@ namespace Core;
 
 abstract class Character
 {
+    public int $playerID;
     public string $name;
     public int $health;
     public int $strength;
-    public int $playerID;
     public int $mana;
     public string $className;
 

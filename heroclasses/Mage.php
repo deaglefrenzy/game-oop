@@ -15,11 +15,16 @@ class Mage extends Character
         parent::charInit($playerID, $health, $strength, $name, $mana, $className);
     }
 
-    function castSpell($char): string
+    // function castSpell($char): string
+    // {
+    //     $this->mana = $this->mana - 10;
+    //     $char->health = $char->health - $this->strength * 2;
+    //     $action = $this->name . " casts spell on " . $char->name . " for " . $this->strength * 2 . " damage<br>";
+    //     return $action;
+    // }
+    function castSpell(): string
     {
-        $this->mana = $this->mana - 10;
-        $char->health = $char->health - $this->strength * 2;
-        $action = $this->name . " casts spell on " . $char->name . " for " . $this->strength * 2 . " damage<br>";
+        $action = $this->name . " casts spell for " . $this->strength * 2 . " damage";
         return $action;
     }
 }

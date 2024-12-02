@@ -168,16 +168,36 @@ function put($file, $data, $mode): string
     }
 }
 
-function get($file): array
+function get($file, $search = 0): array
 {
     if (($handle = fopen($file, 'r')) !== false) {
-        $data = [];
 
+        $data = [];
         while (($row = fgetcsv($handle, 1000, ',')) !== false) {
             $data[] = $row;
         }
-
         fclose($handle);
-        return $data;
+
+        if ($search === 0) {
+            return $data;
+        } else {
+            $result = [];
+            foreach ($data as $key => $row) {
+                if ($row[0] == $search) {
+                    $result = $data[$key];
+                }
+            }
+            $searched[] = $result;
+            return $searched;
+        }
     } else die("Can't open file.");
+}
+
+function dd($value)
+{
+    echo "<pre>";
+    var_dump($value);
+    echo "</pre>";
+
+    die();
 }
