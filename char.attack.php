@@ -1,10 +1,10 @@
 <?php
-
 require "Character.php";
-require "functions.php";
 require "heroclasses\Mage.php";
 require "heroclasses\Warrior.php";
 require "heroclasses\Archer.php";
+require "functions.php";
+require "classes\CharCreate.php";
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $playerID = $_POST['playerID'];

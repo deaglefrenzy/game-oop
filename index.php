@@ -60,24 +60,23 @@ $jum = count($view);
         <?php
         foreach ($view as $row) {
         ?>
-
             <tr>
-                <td><?php echo $row[0]; ?></td>
-                <td><?php echo $row[5]; ?></td>
-                <td><?php echo $row[1]; ?></td>
-                <td><?php echo $row[2]; ?></td>
-                <td><?php echo $row[3]; ?></td>
-                <td><?php echo $row[4]; ?></td>
+                <td><?php echo $row->playerID; ?></td>
+                <td><?php echo $row->className; ?></td>
+                <td><?php echo $row->name; ?></td>
+                <td><?php echo $row->health; ?></td>
+                <td><?php echo $row->strength; ?></td>
+                <td><?php echo $row->mana; ?></td>
                 <form action="char.attack.php" method="post">
                     <td align="center">
-                        <input hidden name="playerID" value="<?= $row[0] ?>">
+                        <input hidden name="playerID" value="<?= $row->$playerID ?>">
                         <input type="hidden" name="file" value="<?php echo $file; ?>">
-                        <button type="submit" name="act" value="attack">Attack</button>
+                        <button type="submit" name="act" value="attack"><?= $row->specialAttack(); ?></button>
                     </td>
                 </form>
                 <form action="char.delete.php" method="post" onsubmit="return confirm('Delete this character?');">
                     <td align="center">
-                        <input hidden name="playerID" value="<?= $row[0] ?>">
+                        <input hidden name="playerID" value="<?= $row->$playerID ?>">
                         <input type="hidden" name="file" value="<?php echo $file; ?>">
                         <button type="submit" name="act" value="attack">Delete</button>
                     </td>

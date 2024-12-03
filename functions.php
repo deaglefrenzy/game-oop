@@ -172,19 +172,28 @@ function get($file, $search = 0): array
 {
     if (($handle = fopen($file, 'r')) !== false) {
 
-        $data = [];
-        while (($row = fgetcsv($handle, 1000, ',')) !== false) {
-            $data[] = $row;
+        $characters = [];
+        $rawString = fread($handle, 1000);
+        foreach (explode("\n", $rawString) as $line) {
+            if ($line === "") {
+                break;
+            }
+            $characters[] = Character::fromCSV(explode(",", $line));
+            // foreach( as $row) {
+            // }
         }
+
+        // while (($row = fgetcsv($handle, 1000, ',')) !== false) {
+        // }
         fclose($handle);
 
         if ($search === 0) {
-            return $data;
+            return $characters;
         } else {
             $result = [];
-            foreach ($data as $key => $row) {
-                if ($row[0] == $search) {
-                    $result = $data[$key];
+            foreach ($characters as $key => $character) {
+                if ($character->name === $search) {
+                    $result = $characters[$key];
                 }
             }
             $searched[] = $result;

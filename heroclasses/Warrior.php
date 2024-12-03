@@ -2,7 +2,7 @@
 
 use Core\Character;
 
-class Warrior extends Character
+class Warrior extends Character implements CanEat
 {
     function __construct(
         int $playerID,
@@ -12,7 +12,7 @@ class Warrior extends Character
         int $mana = 0,
         string $className = "Warrior"
     ) {
-        parent::charInit($playerID, $health, $strength, $name, $mana, $className);
+        parent::__construct($playerID, $health, $strength, $name, $mana, $className);
     }
 
     // function meleeAttack($char): string
@@ -25,5 +25,20 @@ class Warrior extends Character
     {
         $action = $this->name . " melee attacks for " . $this->strength . " damage";
         return $action;
+    }
+
+    function eat(int $health): void
+    {
+        $this->health += $health;
+    }
+
+    function poop(): void
+    {
+        echo "I'm done pooping";
+    }
+
+    function specialAttack(): string
+    {
+        return "SwordSwing";
     }
 }

@@ -12,7 +12,7 @@ class Mage extends Character
         int $mana = 50,
         string $className = "Mage"
     ) {
-        parent::charInit($playerID, $health, $strength, $name, $mana, $className);
+        parent::__construct($playerID, $health, $strength, $name, $mana, $className);
     }
 
     // function castSpell($char): string
@@ -27,4 +27,18 @@ class Mage extends Character
         $action = $this->name . " casts spell for " . $this->strength * 2 . " damage";
         return $action;
     }
+
+    function specialAttack(): string
+    {
+        return "Hailstorm Attack";
+    }
 }
+
+// class CSVRepository {
+//     function getCharacters(): array {
+
+//     }
+// }
+
+// $repository = new CSVRepository();
+// $characters = $repository->getCharacters();

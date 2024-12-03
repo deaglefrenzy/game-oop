@@ -1,6 +1,6 @@
 <?php
 
-abstract class CharCreate
+class CharCreate
 {
     public static function insertChar($file, $data)
     {

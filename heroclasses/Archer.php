@@ -12,7 +12,13 @@ class Archer extends Character
         int $mana = 0,
         string $className = "Archer"
     ) {
-        parent::charInit($playerID, $health, $strength, $name, $mana, $className);
+        parent::__construct($playerID, $health, $strength, $name, $mana, $className);
+    }
+
+    function levelUp(): string
+    {
+        $this->mana += 80;
+        return parent::levelUp();
     }
 
     // function rangedAttack($char): string
@@ -25,5 +31,10 @@ class Archer extends Character
     {
         $action = $this->name . " range attacks for " . $this->strength . " damage";
         return $action;
+    }
+
+    function specialAttack(): string
+    {
+        return "ArrowBarrage";
     }
 }
